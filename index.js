@@ -39,7 +39,14 @@ const respuestas = [
     "claro cielo pero no mates a nadie por favor",
     "no nos importa perdedor",
     "quien tu te cree cabron",
-    "silencio puta"
+    "silencio puta",
+    "gracias por absolutamente nada",
+    "ya empezaste",
+    "otra vez tú",
+    "ya entendimos",
+    "literalmente nadie:",
+    "no era necesario decirlo",
+    "qué vergüenza"
 ];
 
 client.once('clientReady', () => {
