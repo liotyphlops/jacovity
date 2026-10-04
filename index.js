@@ -92,10 +92,14 @@ client.on("messageCreate", async (message) => {
             const reaccion = reacciones[
                 Math.floor(Math.random() * reacciones.length)
             ];
+            const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
 
             await message.react(reaccion);
             await message.reply(respuesta);
         } else {
+            const reaccion = reacciones[
+                Math.floor(Math.random() * reacciones.length)
+            ];
             const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
 
             await message.reply(respuesta);
