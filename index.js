@@ -19,11 +19,76 @@ let probabilidad = 50;
 const reacciones = [
     "🤡",
     "💀",
-    "😂"
+    "😂",
+    "🤣"
 ];
 
 client.once('clientReady', () => {
     console.log('Bot conectado.');
 });
+
+client.on("messageCreate", async () => {
+    if(message.author.bot) return;
+
+    if(message.content.startsWith("!victima")) {
+        const usuario = message.mentions.users.first();
+
+        if(!usuario) {
+            return message.reply("Menciona a una persona");
+        }
+    }
+
+    jacob = usuario.id;
+    tirarMierda = true;
+
+    message.reply(`${usuario} se selecciono`);
+
+    if(message.content === "!mierda") {
+        tirarMierda = !tirarMierda;
+        
+        return message.reply(tirarMierda ? "activado" : "desactivado");
+    }
+
+    if(message.content.startsWith("!probabilidad")) {
+        const numero = parseInt(message.content.split(" ")[1]);
+
+        if(isNaN(numero) || numero < 0 || numero > 100) {
+            return message.reply("Usa una probabilidad entre 0 y 100");
+        }
+
+        probabilidad = numero;
+
+        return message.reply(`Probabilidad establecida ${probabilidad}`);
+
+    }
+
+    if(!tirarMierda) return;
+
+    if(!jacob) return;
+
+    if(message.author.id !== jacob) return;
+
+    const numeroRandom = Math.random() * 100;
+
+    if(numeroRandom > probabilidad) return;
+
+    const accion = Math.random();
+
+    try{
+        if (accion < 0.65) {
+            const reaccion = reacciones[
+                Math.floor(Math.random() * reacciones.length)
+            ];
+
+            await message.react(reaccion);
+        } else {
+            const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
+
+            await message.reply(respuesta);
+        } 
+    } catch(error) {
+        console.log("Error: ", error);
+    }
+    });
 
 client.login(process.env.TOKEN);
