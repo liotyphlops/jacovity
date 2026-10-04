@@ -92,13 +92,13 @@ client.on("messageCreate", async (message) => {
     }
 
     if(message.content.startsWith("!probabilidadReac")) {
-        const numero = parseInt(message.content.split(" ")[1]);
+        const num = parseInt(message.content.split(" ")[1]);
 
-        if(isNaN(numero) || numero < 0 || numero > 100) {
+        if(isNaN(num) || num < 0 || num > 100) {
             return await message.reply("Usa una probabilidad entre 0 y 100");
         }
 
-        probabilidadReaccion = numero;
+        probabilidadReaccion = num;
 
         return await message.reply(`probabilidad establecida ${probabilidadReaccion}`);
 
