@@ -63,7 +63,9 @@ client.on("messageCreate", async (message) => {
 
     const esComando = comandos.some(c => message.content.startsWith(c));
 
-    if (esComando && !autorizados.includes(message.author.id)) return;
+    if (esComando && !autorizados.includes(message.author.id)) {
+        return await message.reply("Tú no puedes usar esto 🤡");
+    }
 
     if(message.content.startsWith("!victima")) {
         const usuario = message.mentions.users.first();
