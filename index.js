@@ -27,7 +27,11 @@ const respuestas = [
     "puto",
     "gay",
     "ok",
-    "nigger"
+    "nigger",
+    "telosico",
+    "no te preguntamos",
+    "nt",
+    "bajale de huevos"
 ];
 
 client.once('clientReady', () => {
@@ -90,10 +94,12 @@ client.on("messageCreate", async (message) => {
             ];
 
             await message.react(reaccion);
+            await message.reply(respuesta);
         } else {
             const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
 
             await message.reply(respuesta);
+            await message.react(reaccion);
         } 
     } catch(error) {
         console.log("Error: ", error);
