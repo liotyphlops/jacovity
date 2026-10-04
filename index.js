@@ -78,7 +78,7 @@ client.on("messageCreate", async (message) => {
         return await message.reply(tirarMierda ? "activado" : "desactivado");
     }
 
-    if(message.content.startsWith("!probabilidad")) {
+    if(message.content.startsWith("!probabilidad respuesta")) {
         const numero = parseInt(message.content.split(" ")[1]);
 
         if(isNaN(numero) || numero < 0 || numero > 100) {
@@ -91,6 +91,19 @@ client.on("messageCreate", async (message) => {
 
     }
 
+    if(message.content.startsWith("!probabilidad reaccion")) {
+        const numero = parseInt(message.content.split(" ")[1]);
+
+        if(isNaN(numero) || numero < 0 || numero > 100) {
+            return await message.reply("Usa una probabilidad entre 0 y 100");
+        }
+
+        probabilidadReaccion = numero;
+
+        return await message.reply(`probabilidad establecida ${probabilidadReaccion}`);
+
+    }
+
     if(!tirarMierda) return;
 
     if(!jacob) return;
@@ -100,6 +113,8 @@ client.on("messageCreate", async (message) => {
     const numeroRandom = Math.random() * 100;
 
     if(numeroRandom > probabilidadRespuesta) return;
+
+    if(numeroRandom > probabilidadReaccion) return;
 
     const accion = Math.random();
 
