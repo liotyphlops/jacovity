@@ -14,7 +14,8 @@ let jacob = null;
 
 let tirarMierda = false;
 
-let probabilidad = 100;
+let probabilidadRespuesta = 50;
+let probabilidadReaccion = 100;
 
 const reacciones = [
     "🤡",
@@ -84,9 +85,9 @@ client.on("messageCreate", async (message) => {
             return await message.reply("Usa una probabilidad entre 0 y 100");
         }
 
-        probabilidad = numero;
+        probabilidadRespuesta = numero;
 
-        return await message.reply(`Probabilidad establecida ${probabilidad}`);
+        return await message.reply(`probabilidad establecida ${probabilidadRespuesta}`);
 
     }
 
@@ -98,7 +99,7 @@ client.on("messageCreate", async (message) => {
 
     const numeroRandom = Math.random() * 100;
 
-    if(numeroRandom > probabilidad) return;
+    if(numeroRandom > probabilidadRespuesta) return;
 
     const accion = Math.random();
 
@@ -115,9 +116,7 @@ client.on("messageCreate", async (message) => {
             const reaccion = reacciones[
                 Math.floor(Math.random() * reacciones.length)
             ];
-            const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
 
-            await message.reply(respuesta);
             await message.react(reaccion);
         } 
     } catch(error) {
