@@ -14,7 +14,7 @@ let jacob = null;
 
 let tirarMierda = false;
 
-let probabilidad = 50;
+let probabilidad = 100;
 
 const reacciones = [
     "🤡",
