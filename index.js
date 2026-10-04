@@ -31,7 +31,12 @@ const respuestas = [
     "telosico",
     "no te preguntamos",
     "nt",
-    "bajale de huevos"
+    "bajale de huevos",
+    "deja de llorar",
+    "calmate wey",
+    "ya le contaron al presidente?",
+    "con quien hablas?",
+    "claro cielo pero no mates a nadie por favor"
 ];
 
 client.once('clientReady', () => {
