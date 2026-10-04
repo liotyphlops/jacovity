@@ -50,12 +50,20 @@ const respuestas = [
     "qué vergüenza"
 ];
 
+const autorizados = process.env.AUTORIZADOS.split(",");
+
+const comandos = ["!victima", "!mierda", "!probabilidadRes", "!probabilidadReac"];
+
 client.once('clientReady', () => {
     console.log('Bot conectado.');
 });
 
 client.on("messageCreate", async (message) => {
     if(message.author.bot) return;
+
+    const esComando = comandos.some(c => message.content.startsWith(c));
+
+    if (esComando && !autorizados.includes(message.author.id)) return;
 
     if(message.content.startsWith("!victima")) {
         const usuario = message.mentions.users.first();
@@ -65,12 +73,12 @@ client.on("messageCreate", async (message) => {
         }
     
 
-    jacob = usuario.id;
-    tirarMierda = true;
+        jacob = usuario.id;
+        tirarMierda = true;
 
-    await message.reply(`${usuario} se selecciono`);
-    return;
-}
+        await message.reply(`${usuario} se selecciono`);
+        return;
+    }
 
     if(message.content === "!mierda") {
         tirarMierda = !tirarMierda;
@@ -110,33 +118,22 @@ client.on("messageCreate", async (message) => {
 
     if(message.author.id !== jacob) return;
 
-    const numeroRandom = Math.random() * 100;
+    const reaccionar = Math.random() * 100 < probabilidadReaccion;
+    const responder = Math.random() * 100 < probabilidadRespuesta;
 
-    if(numeroRandom > probabilidadRespuesta) return;
+    try {
+        if (reaccionar) {
+            const reaccion = reacciones[Math.floor(Math.random() * reacciones.length)];
+            await message.react(reaccion);
+        }
 
-    if(numeroRandom > probabilidadReaccion) return;
-
-    const accion = Math.random();
-
-    try{
-        if (accion < 0.65) {
-            const reaccion = reacciones[
-                Math.floor(Math.random() * reacciones.length)
-            ];
+        if (responder) {
             const respuesta = respuestas[Math.floor(Math.random() * respuestas.length)];
-
-            await message.react(reaccion);
             await message.reply(respuesta);
-        } else {
-            const reaccion = reacciones[
-                Math.floor(Math.random() * reacciones.length)
-            ];
-
-            await message.react(reaccion);
-        } 
+        }
     } catch(error) {
         console.log("Error: ", error);
     }
-    });
+});
 
 client.login(process.env.TOKEN);
