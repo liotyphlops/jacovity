@@ -36,7 +36,10 @@ const respuestas = [
     "calmate wey",
     "ya le contaron al presidente?",
     "con quien hablas?",
-    "claro cielo pero no mates a nadie por favor"
+    "claro cielo pero no mates a nadie por favor",
+    "no nos importa perdedor",
+    "quien tu te cree cabron",
+    "silencio puta"
 ];
 
 client.once('clientReady', () => {
