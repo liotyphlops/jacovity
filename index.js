@@ -25,10 +25,9 @@ const reacciones = [
 ];
 
 const respuestas = [
-    "puto",
-    "gay",
+    "putilla",
+    "gaysote",
     "ok",
-    "nigger",
     "telosico",
     "no te preguntamos",
     "nt",
@@ -40,7 +39,7 @@ const respuestas = [
     "claro cielo pero no mates a nadie por favor",
     "no nos importa perdedor",
     "quien tu te cree cabron",
-    "silencio puta",
+    "silencio perrita",
     "gracias por absolutamente nada",
     "ya empezaste",
     "otra vez tú",
