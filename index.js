@@ -78,7 +78,7 @@ client.on("messageCreate", async (message) => {
         return await message.reply(tirarMierda ? "activado" : "desactivado");
     }
 
-    if(message.content.startsWith("!probabilidad respuesta")) {
+    if(message.content.startsWith("!probabilidadRes")) {
         const numero = parseInt(message.content.split(" ")[1]);
 
         if(isNaN(numero) || numero < 0 || numero > 100) {
@@ -91,7 +91,7 @@ client.on("messageCreate", async (message) => {
 
     }
 
-    if(message.content.startsWith("!probabilidad reaccion")) {
+    if(message.content.startsWith("!probabilidadReac")) {
         const numero = parseInt(message.content.split(" ")[1]);
 
         if(isNaN(numero) || numero < 0 || numero > 100) {
